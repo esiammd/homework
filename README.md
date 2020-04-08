@@ -21,14 +21,14 @@ Quando aceita uma conexão cria uma Thread e avalia o dado de entrada conforme a
           "Cache miss. File", data, "sent to the client"
     2.2.2 se o tamanho do arquivo for menor que 64MB, ele verifica se é possível adicionar o arquivo na cache, isto é:
       - se tamanho da cache atual + tamanho do arquivo < 64MB:
-        (*) armazena o arquivo na cache, envia o arquivo ao client e imprime a mensagem: "Cache miss. File", data, "sent to the client"
+        (a) armazena o arquivo na cache, envia o arquivo ao client e imprime a mensagem: "Cache miss. File", data, "sent to the client"
       - se tamanho da cache atual + tamanho do arquivo > 64MB:
-        (**) elimina o arquivo mais antigo na cache (primeiro arquivo armazenado) e verifica novamente se é possível armazenar o arquivo na cache.
-        Caso seja possível, realiza o passo (*), caso contrário, realiza novamente o passo (**)
+        (b) elimina o arquivo mais antigo na cache (primeiro arquivo armazenado) e verifica novamente se é possível armazenar o arquivo na cache.
+        Caso seja possível, realiza o passo (a), caso contrário, realiza novamente o passo (b)
   2.3 caso o arquivo não exista no diretório do servidor, o server imprime a mensagem:
     "File", data, "does not exist"
 
-OBS: data = nome do arquivo solicitado
+**OBS:** data = nome do arquivo solicitado
 
 CLIENT
 O cliente recebe quatro parâmetros (o ip do servidor, a porta de comunicação, o nome do arquivo a ser solicitado e o diretório dos arquivos) no seguinte formato:
@@ -42,4 +42,4 @@ Depois enviar uma solicitação de arquivo ou listCache ao server e recebe um da
 3. Caso receba do serve a mensagem "EOF", significa que o arquivo solicitado não existe no diretório do server. Neste caso, o client imprime a mensagem:
   "file", tcp_file, "saved"
 
-OBS: tcp_file = nome do arquivo solicitado
+**OBS:** tcp_file = nome do arquivo solicitado
